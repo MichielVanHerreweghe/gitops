@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - core/project.yaml
   - core/infisical/application.yaml
+  - core/gateway-api-crds/application.yaml
   - core/cert-manager/application.yaml
