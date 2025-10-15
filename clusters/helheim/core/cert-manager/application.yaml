@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  labels:
+    app: cert-manager
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - chart: cert-manager
+      repoURL: https://charts.jetstack.io
+      targetRevision: v1.19.0
+      helm:
+        valueFiles:
+          - $values/clusters/helheim/cert-manager/values.yml
+    - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
+      targetRevision: HEAD
+      ref: values
+    - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
+      path: clusters/helheim/cert-manager/manifests
+      targetRevision: HEAD
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - CreateNamespace=true
