@@ -16,12 +16,12 @@ spec:
       targetRevision: v1.19.0
       helm:
         valueFiles:
-          - $values/clusters/helheim/cert-manager/values.yaml
+          - $values/clusters/helheim/core/cert-manager/values.yaml
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
       targetRevision: HEAD
       ref: values
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
-      path: clusters/helheim/cert-manager/manifests
+      path: clusters/helheim/core/cert-manager/manifests
       targetRevision: HEAD
   syncPolicy:
     automated:
