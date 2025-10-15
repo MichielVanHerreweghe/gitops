@@ -8,3 +8,4 @@ resources:
   - core/gateway-api-crds/application.yaml
   - core/cert-manager/application.yaml
   - core/pomerium/application.yaml
+  - core/intel-device-plugins/application.yaml
