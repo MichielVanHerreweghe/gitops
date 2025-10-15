@@ -16,7 +16,7 @@ spec:
       targetRevision: v1.19.0
       helm:
         valueFiles:
-          - $values/clusters/helheim/cert-manager/values.yml
+          - $values/clusters/helheim/cert-manager/values.yaml
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
       targetRevision: HEAD
       ref: values
