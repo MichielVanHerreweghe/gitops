@@ -12,9 +12,18 @@ spec:
     namespace: intel-device-plugins
   project: core
   sources:
+    - chart: node-feature-discovery
+      repoURL: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+      targetRevision: 0.18.1
     - chart: intel-device-plugins-operator
       repoURL: "https://intel.github.io/helm-charts"
       targetRevision: 0.34.1-helm.0
+    - chart: intel-device-plugins-gpu
+      repoURL: https://intel.github.io/helm-charts
+      targetRevision: 0.34.0
+      helm:
+        values: |
+          nodeFeatureRule: true
   syncPolicy:
     automated:
       allowEmpty: true
