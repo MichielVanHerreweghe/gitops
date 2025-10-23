@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: nginx-gateway-fabric
   namespace: argocd
   labels:
-    app: cert-manager
+    app: nginx-gateway-fabric
 spec:
   destination:
-    namespace: cert-manager
+    namespace: nginx-gateway-fabric
     server: https://kubernetes.default.svc
   project: core
   sources:
-    - chart: cert-manager
-      repoURL: https://charts.jetstack.io
-      targetRevision: v1.19.0
+    - chart: nginx-gateway-fabric
+      repoURL: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
+      targetRevision: 2.2.0
       helm:
         valueFiles:
-          - $values/clusters/helheim/core/cert-manager/values.yaml
+          - $values/clusters/helheim/core/nginx-gateway-fabric/values.yaml
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
       targetRevision: HEAD
       ref: values
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
-      path: clusters/helheim/core/cert-manager/manifests
+      path: clusters/helheim/core/nginx-gateway-fabric/manifests
       targetRevision: HEAD
   syncPolicy:
     automated:

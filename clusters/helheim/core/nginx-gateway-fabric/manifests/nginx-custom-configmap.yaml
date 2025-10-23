@@ -1,0 +1,51 @@
+# original: https://github.com/nginxinc/nginx-gateway-fabric/blob/main/internal/mode/static/nginx/conf/nginx.conf
+apiVersion: v1
+kind: ConfigMap
+data:
+  nginx.conf: |
+    load_module /usr/lib/nginx/modules/ngx_http_js_module.so;
+
+    worker_processes auto;
+
+    pid /var/run/nginx/nginx.pid;
+    error_log stderr info;
+
+    events {
+      worker_connections 1024;
+    }
+
+    http {
+      include /etc/nginx/conf.d/*.conf;
+      include /etc/nginx/mime.types;
+      js_import /usr/lib/nginx/modules/njs/httpmatches.js;
+
+      default_type application/octet-stream;
+
+      proxy_headers_hash_bucket_size 512;
+      proxy_headers_hash_max_size 1024;
+      server_names_hash_bucket_size 256;
+      server_names_hash_max_size 1024;
+      variables_hash_bucket_size 512;
+      variables_hash_max_size 1024;
+
+      ### Custom configuration
+      proxy_buffer_size   128k;
+      proxy_buffers   4 256k;
+      proxy_busy_buffers_size   256k;    
+      ### End of custom configuration
+
+      sendfile on;
+      tcp_nopush on;
+
+      server {
+        listen unix:/var/run/nginx/nginx-status.sock;
+        access_log off;
+
+        location /stub_status {
+            stub_status;
+        }
+      }
+    }
+metadata:
+  name: nginx-gateway-config-override
+  namespace: nginx-gateway-fabric

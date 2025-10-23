@@ -1,0 +1,57 @@
+serviceAccount:
+  create: true
+
+nginx:
+  service:
+    type: LoadBalancer
+  extraVolumeMounts:
+    - name: nginx-config-override
+      mountPath: /etc/nginx/nginx.conf
+      subPath: nginx.conf
+
+extraVolumes:
+  - name: nginx-config-override
+    configMap:
+      name: nginx-gateway-config-override
+
+gateways:
+  - name: gateway-encrypted
+    namespace: nginx-gateway-fabric
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      cert-manager.io/issue-temporary-certificate: "true"
+    spec:
+      gatewayClassName: nginx
+      listeners:
+        - name: https
+          port: 443
+          protocol: HTTPS
+          hostname: "*.houseofix.online"
+          allowedRoutes:
+            namespaces:
+              from: All
+          tls:
+            mode: Terminate
+            certificateRefs:
+              - name: tls-gateway-encrypted
+                namespace: nginx-gateway-fabric
+  - namespace: nginx-gateway-fabric
+    name: gateway-unencrypted
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      cert-manager.io/issue-temporary-certificate: "true"
+    spec:
+      gatewayClassName: nginx
+      listeners:
+        - name: https
+          port: 443
+          protocol: HTTPS
+          hostname: "*.houseofix.online"
+          allowedRoutes:
+            namespaces:
+              from: All
+          tls:
+            mode: Terminate
+            certificateRefs:
+              - name: tls-gateway-unencrypted
+                namespace: nginx-gateway-fabric
