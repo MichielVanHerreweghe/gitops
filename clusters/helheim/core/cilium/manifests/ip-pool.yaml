@@ -4,5 +4,5 @@ metadata:
   name: "loadbalancer-pool"
 spec:
   blocks:
-    - start: "10.0.4.129"
-      stop: "10.0.4.254"
+    - start: "10.0.1.100"
+      stop: "10.0.1.101"
