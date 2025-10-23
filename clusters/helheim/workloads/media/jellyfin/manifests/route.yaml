@@ -5,7 +5,6 @@ metadata:
   namespace: jellyfin
   annotations:
     external-dns.alpha.kubernetes.io/hostname: "jellyfin.houseofix.online"
-    external-dns.alpha.kubernetes.io/target: "houseofix.online"
 spec:
   parentRefs:
     - name: gateway-unencrypted

@@ -9,4 +9,5 @@ env:
         key: api-key
 
 sources:
+  - gateway
   - gateway-httproute
