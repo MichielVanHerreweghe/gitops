@@ -7,7 +7,6 @@ resources:
   - core/infisical/application.yaml
   - core/gateway-api-crds/application.yaml
   - core/cert-manager/application.yaml
-  - core/pomerium/application.yaml
   - core/intel-device-plugins/application.yaml
 
   - workloads/media/project.yaml
