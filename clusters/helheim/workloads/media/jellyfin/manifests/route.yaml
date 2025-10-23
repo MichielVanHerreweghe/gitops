@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: jellyfin
+  namespace: jellyfin
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "jellyfin.houseofix.online"
+    external-dns.alpha.kubernetes.io/target: "houseofix.online"
+spec:
+  parentRefs:
+    - name: gateway-unencrypted
+      namespace: nginx-gateway-fabric
+  hostnames:
+    - "jellyfin.houseofix.online"
+  rules:
+    - backendRefs:
+        - name: jellyfin
+          port: 8096
