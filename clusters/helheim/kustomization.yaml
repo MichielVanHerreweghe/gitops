@@ -8,6 +8,7 @@ resources:
   - core/gateway-api-crds/application.yaml
   - core/cert-manager/application.yaml
   - core/intel-device-plugins/application.yaml
+  - core/external-dns/application.yaml
   - core/nginx-gateway-fabric/application.yaml
 
   - workloads/media/project.yaml
