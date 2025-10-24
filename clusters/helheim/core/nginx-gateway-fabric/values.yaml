@@ -45,7 +45,7 @@ gateways:
     spec:
       gatewayClassName: nginx
       listeners:
-        - name: https
+        - name: argocd-https
           port: 443
           protocol: HTTPS
           hostname: "argocd.houseofix.online"
@@ -55,5 +55,17 @@ gateways:
           tls:
             mode: Terminate
             certificateRefs:
-              - name: tls-gateway-unencrypted
+              - name: tls-gateway-unencrypted-argocd
+                namespace: nginx-gateway-fabric
+        - name: jellyfin-https
+          port: 443
+          protocol: HTTPS
+          hostname: "jellyfin.houseofix.online"
+          allowedRoutes:
+            namespaces:
+              from: All
+          tls:
+            mode: Terminate
+            certificateRefs:
+              - name: tls-gateway-unencrypted-jellyfin
                 namespace: nginx-gateway-fabric
