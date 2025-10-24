@@ -9,6 +9,6 @@ spec:
       peers:
         - name: "navigator"
           peerASN: 65000
-          peerAddress: 10.0.0.1
+          peerAddress: 10.0.4.1
           peerConfigRef:
             name: "cilium-peer"
