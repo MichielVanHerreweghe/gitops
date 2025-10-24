@@ -10,7 +10,7 @@ data:
   url: https://argocd.houseofix.online
   oidc.config: |
     name: Azure
-    admin.enabled: "true"
+    admin.enabled: "false"
     issuer: https://login.microsoftonline.com/5897482a-f0cc-4b2a-acea-6df9a4fe00b5/v2.0
     clientID: 484dce4e-6a9b-4c05-9e44-c6e9a12489ba
     clientSecret: $oidc.azure.clientSecret
