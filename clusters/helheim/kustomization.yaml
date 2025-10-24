@@ -3,13 +3,13 @@ kind: Kustomization
 
 resources:
   - core/project.yaml
+  - core/gateway-api-crds/application.yaml
   - core/cilium/application.yaml
   - core/infisical/application.yaml
-  - core/gateway-api-crds/application.yaml
   - core/cert-manager/application.yaml
   - core/intel-device-plugins/application.yaml
   - core/external-dns/application.yaml
-  - core/nginx-gateway-fabric/application.yaml
+  # - core/nginx-gateway-fabric/application.yaml
 
-  - workloads/media/project.yaml
-  - workloads/media/jellyfin/application.yaml
+  # - workloads/media/project.yaml
+  # - workloads/media/jellyfin/application.yaml
