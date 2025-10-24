@@ -6,6 +6,7 @@ resources:
   - core/gateway-api-crds/application.yaml
   - core/cilium/application.yaml
   - core/infisical/application.yaml
+  - core/external-secrets/application.yaml
   - core/cert-manager/application.yaml
   - core/intel-device-plugins/application.yaml
   - core/external-dns/application.yaml
