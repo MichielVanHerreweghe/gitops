@@ -15,27 +15,27 @@ extraVolumes:
       name: nginx-gateway-config-override
 
 gateways:
-  # - name: gateway-encrypted
-  #   namespace: nginx-gateway-fabric
-  #   annotations:
-  #     cert-manager.io/cluster-issuer: cloudflare
-  #     cert-manager.io/issue-temporary-certificate: "true"
-  #     external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
-  #   spec:
-  #     gatewayClassName: nginx
-  #     listeners:
-  #       - name: https
-  #         port: 443
-  #         protocol: HTTPS
-  #         hostname: "*.houseofix.online"
-  #         allowedRoutes:
-  #           namespaces:
-  #             from: All
-  #         tls:
-  #           mode: Terminate
-  #           certificateRefs:
-  #             - name: tls-gateway-encrypted
-  #               namespace: nginx-gateway-fabric
+  - name: gateway-encrypted
+    namespace: nginx-gateway-fabric
+    annotations:
+      cert-manager.io/cluster-issuer: cloudflare
+      cert-manager.io/issue-temporary-certificate: "true"
+      external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
+    spec:
+      gatewayClassName: nginx
+      listeners:
+        - name: https
+          port: 443
+          protocol: HTTPS
+          hostname: "test.houseofix.online"
+          allowedRoutes:
+            namespaces:
+              from: All
+          tls:
+            mode: Terminate
+            certificateRefs:
+              - name: tls-gateway-encrypted
+                namespace: nginx-gateway-fabric
   - namespace: nginx-gateway-fabric
     name: gateway-unencrypted
     annotations:
