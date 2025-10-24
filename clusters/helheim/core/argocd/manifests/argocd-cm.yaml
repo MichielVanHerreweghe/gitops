@@ -1,39 +1,24 @@
-apiVersion: secrets.infisical.com/v1alpha1
-kind: InfisicalSecret
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: secret-argocd-sso-client-secret
-spec:
-  hostAPI: https://app.infisical.com/api
-  resyncInterval: 1
-  authentication:
-    universalAuth:
-      secretsScope:
-        projectSlug: kubernetes-j8-fh
-        envSlug: helheim
-        secretsPath: "/"
-      credentialsRef:
-        secretName: secret-machine-identity
-        secretNamespace: infisical
-
-  managedKubeConfigMapReferences:
-    - configMapName: argocd-cm
-      configMapNamespace: argocd
-      creationPolicy: "Orphan"
-      template:
-        includeAllSecrets: false
-        data:
-          url: https://argocd.houseofix.online
-          oidc.config: |
-            name: Azure
-            admin.enabled: "true"
-            issuer: https://login.microsoftonline.com/5897482a-f0cc-4b2a-acea-6df9a4fe00b5/v2.0
-            clientID: 484dce4e-6a9b-4c05-9e44-c6e9a12489ba
-            clientSecret: "{{ .ARGOCD_AZURE_ENTRA_CLIENT_SECRET.Value }}"
-            requestedIDTokenClaims:
-              groups:
-                  essential: true
-                  value: "SecurityGroup"
-            requestedScopes:
-              - openid
-              - profile
-              - email
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  url: https://argocd.houseofix.online
+  oidc.config: |
+    name: Azure
+    admin.enabled: "true"
+    issuer: https://login.microsoftonline.com/5897482a-f0cc-4b2a-acea-6df9a4fe00b5/v2.0
+    clientID: 484dce4e-6a9b-4c05-9e44-c6e9a12489ba
+    clientSecret: $oidc.azure.clientSecret
+    requestedIDTokenClaims:
+      groups:
+          essential: true
+          value: "SecurityGroup"
+    requestedScopes:
+      - openid
+      - profile
+      - email
