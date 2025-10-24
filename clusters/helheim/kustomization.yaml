@@ -13,5 +13,5 @@ resources:
   - core/nginx-gateway-fabric/application.yaml
   - core/argocd/application.yaml
 
-  # - workloads/media/project.yaml
-  # - workloads/media/jellyfin/application.yaml
+  - workloads/media/project.yaml
+  - workloads/media/jellyfin/application.yaml
