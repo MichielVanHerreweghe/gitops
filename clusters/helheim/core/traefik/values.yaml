@@ -1,0 +1,65 @@
+gateway:
+  enabled: true
+  name: traefik
+  annotations:
+    annotations:
+      cert-manager.io/cluster-issuer: cloudflare
+      cert-manager.io/issue-temporary-certificate: "true"
+      external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
+  listeners:
+    web:
+      port: 8000
+      protocol: HTTP
+      namespacePolicy: All
+    websecure:
+      port: 8443
+      protocol: HTTPS
+      namespacePolicy: All
+      # cert-manager will provision certificates via annotations
+      certificateRefs: []
+
+gatewayClass:
+  enabled: true
+  name: traefik
+
+securityContext:
+  capabilities:
+    drop: [ALL]
+  readOnlyRootFilesystem: true
+  runAsGroup: 65532
+  runAsNonRoot: true
+  runAsUser: 65532
+
+podSecurityContext:
+  fsGroup: 65532
+
+ingressRoute:
+  dashboard:
+    enabled: true
+    matchRule: Host(`traefik.houseofix.online`)
+    entryPoints:
+      - web
+
+ports:
+  web:
+    port: 8000
+    expose:
+      default: true
+    exposedPort: 80
+    # Redirect HTTP to HTTPS
+    redirectTo:
+      port: websecure
+      priority: 10
+  websecure:
+    port: 8443
+    expose:
+      default: true
+    exposedPort: 443
+    http3:
+      enabled: true
+    tls:
+      enabled: true
+
+service:
+  enabled: true
+  type: LoadBalancer
