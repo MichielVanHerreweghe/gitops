@@ -14,7 +14,7 @@ gateway:
       port: 8443
       protocol: HTTPS
       namespacePolicy: null
-      hostname: "houseofix.online"
+      hostname: "*.houseofix.online"
       api:
         dashboard: true
       certificateRefs:
