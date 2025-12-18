@@ -51,12 +51,8 @@ service:
   labels:
     gateway.networking.k8s.io/gateway-name: traefik
 
-# Expose dashboard port
-additionalPorts:
-  - name: dashboard
-    port: 9000
-    targetPort: 9000
-    protocol: TCP
+ingressClass:
+  enabled: false
 
 # Redirect HTTP to HTTPS
 additionalArguments:
