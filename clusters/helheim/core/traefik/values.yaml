@@ -35,6 +35,8 @@ podSecurityContext:
 ingressRoute:
   dashboard:
     enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/target: "traefik.houseofix.online"
     matchRule: Host(`traefik.houseofix.online`)
 
 ports:
