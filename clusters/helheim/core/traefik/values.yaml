@@ -15,6 +15,7 @@ gateway:
       protocol: HTTPS
       namespacePolicy: null
       # cert-manager will provision certificates via annotations
+      hostname: "*.houseofix.online"
       certificateRefs:
         - name: traefik-tls
           kind: Secret
