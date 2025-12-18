@@ -9,14 +9,9 @@ spec:
   parentRefs:
     - name: envoy
       namespace: envoy-gateway
-      kind: Gateway
   hostnames:
     - "whoami.houseofix.online"
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: "/"
-      backendRefs:
+    - backendRefs:
         - name: whoami
           port: 80
