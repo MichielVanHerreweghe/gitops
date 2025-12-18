@@ -16,3 +16,5 @@ resources:
 
   - workloads/media/project.yaml
   - workloads/media/jellyfin/application.yaml
+  - workloads/whoami/project.yaml
+  - workloads/whoami/application.yaml

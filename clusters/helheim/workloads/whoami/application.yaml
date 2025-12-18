@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: whoami
+  namespace: argocd
+spec:
+  project: whoami
+  source:
+    repoURL: https://github.com/MichielVanHerreweghe/gitops.git
+    targetRevision: HEAD
+    path: clusters/helheim/workloads/whoami/manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: whoami
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
