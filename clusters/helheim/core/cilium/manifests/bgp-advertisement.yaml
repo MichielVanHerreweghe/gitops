@@ -17,3 +17,14 @@ spec:
               operator: In,
               values: ["gateway-encrypted", "gateway-unencrypted"],
             }
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - LoadBalancerIP
+      selector:
+        matchExpressions:
+          - {
+              key: gateway.envoyproxy.io/owning-gateway-name,
+              operator: In,
+              values: ["envoy"],
+            }
