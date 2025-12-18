@@ -36,6 +36,10 @@ providers:
 
 ## Gateway Listeners
 gateway:
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    cert-manager.io/issue-temporary-certificate: "true"
+    external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
   listeners:
     web: # HTTP listener that matches entryPoint `web`
       port: 80
