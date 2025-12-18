@@ -13,7 +13,7 @@ spec:
       issuer: "https://login.microsoftonline.com/5897482a-f0cc-4b2a-acea-6df9a4fe00b5/v2.0"
     clientID: "cba8d5a7-1ce6-487b-9ebb-ae4fa0246755"
     clientSecret:
-      name: "secret-whoami-oidc-client-secret"
+      name: "secret-whoami-oidc-secret"
     redirectURL: "https://whoami.houseofix.online/oauth2/callback"
     logoutPath: "/logout"
     scopes:
