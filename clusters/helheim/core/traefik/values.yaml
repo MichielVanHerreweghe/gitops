@@ -1,65 +1,16 @@
-gateway:
-  enabled: true
-  name: traefik
-  annotations:
-    cert-manager.io/cluster-issuer: cloudflare
-    cert-manager.io/issue-temporary-certificate: "true"
-    external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
-  listeners:
-    web:
-      port: 8000
-      protocol: HTTP
-      namespacePolicy: null
-    websecure:
-      port: 8443
-      protocol: HTTPS
-      namespacePolicy: null
-      hostname: "*.houseofix.online"
-      api:
-        dashboard: true
-      certificateRefs:
-        - name: traefik-tls
-          kind: Secret
-          group: ""
+ingressRoute:
+  dashboard:
+    enabled: true
+    matchRule: Host(`dashboard.localhost`)
+    entryPoints:
+      - web
 
 providers:
   kubernetesGateway:
     enabled: true
 
-api:
-  dashboard: true
-
-ports:
-  web:
-    port: 8000
-    expose:
-      default: true
-    exposedPort: 80
-    # Redirect HTTP to HTTPS
-  websecure:
-    port: 8443
-    expose:
-      default: true
-    exposedPort: 443
-    http3:
-      enabled: true
-    tls:
-      enabled: true
-  traefik:
-    port: 8080
-    expose:
-      default: true
-
-service:
-  enabled: true
-  type: LoadBalancer
-  labels:
-    gateway.networking.k8s.io/gateway-name: traefik
-
-ingressClass:
-  enabled: false
-
-# Redirect HTTP to HTTPS
-additionalArguments:
-  - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-  - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+gateway:
+  listeners:
+    web:
+      namespacePolicy:
+        from: All
