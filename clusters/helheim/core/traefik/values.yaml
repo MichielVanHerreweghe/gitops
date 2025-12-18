@@ -2,19 +2,18 @@ gateway:
   enabled: true
   name: traefik
   annotations:
-    annotations:
-      cert-manager.io/cluster-issuer: cloudflare
-      cert-manager.io/issue-temporary-certificate: "true"
-      external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
+    cert-manager.io/cluster-issuer: cloudflare
+    cert-manager.io/issue-temporary-certificate: "true"
+    external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
   listeners:
     web:
       port: 8000
       protocol: HTTP
-      namespacePolicy: All
+      namespacePolicy: null
     websecure:
       port: 8443
       protocol: HTTPS
-      namespacePolicy: All
+      namespacePolicy: null
       # cert-manager will provision certificates via annotations
       certificateRefs: []
 
@@ -37,8 +36,6 @@ ingressRoute:
   dashboard:
     enabled: true
     matchRule: Host(`traefik.houseofix.online`)
-    entryPoints:
-      - web
 
 ports:
   web:
@@ -47,9 +44,6 @@ ports:
       default: true
     exposedPort: 80
     # Redirect HTTP to HTTPS
-    redirectTo:
-      port: websecure
-      priority: 10
   websecure:
     port: 8443
     expose:
@@ -63,3 +57,8 @@ ports:
 service:
   enabled: true
   type: LoadBalancer
+
+# Redirect HTTP to HTTPS
+additionalArguments:
+  - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+  - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
