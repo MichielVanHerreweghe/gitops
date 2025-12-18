@@ -17,27 +17,9 @@ gateway:
       # cert-manager will provision certificates via annotations
       certificateRefs: []
 
-gatewayClass:
-  enabled: true
-  name: traefik
-
-securityContext:
-  capabilities:
-    drop: [ALL]
-  readOnlyRootFilesystem: true
-  runAsGroup: 65532
-  runAsNonRoot: true
-  runAsUser: 65532
-
-podSecurityContext:
-  fsGroup: 65532
-
-ingressRoute:
-  dashboard:
+providers:
+  kubernetesGateway:
     enabled: true
-    annotations:
-      external-dns.alpha.kubernetes.io/hostname: "traefik.houseofix.online"
-    matchRule: Host(`traefik.houseofix.online`)
 
 ports:
   web:
