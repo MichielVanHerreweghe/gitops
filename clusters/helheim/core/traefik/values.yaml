@@ -15,7 +15,12 @@ gateway:
       protocol: HTTPS
       namespacePolicy: null
       # cert-manager will provision certificates via annotations
-      hostname: "*.houseofix.online"
+      hostname:
+        - "traefik.houseofix.online"
+        - "*.houseofix.online"
+      # Enable the Traefik dashboard
+      api:
+        dashboard: true
       certificateRefs:
         - name: traefik-tls
           kind: Secret
@@ -47,6 +52,13 @@ service:
   type: LoadBalancer
   labels:
     gateway.networking.k8s.io/gateway-name: traefik
+
+# Expose dashboard port
+additionalPorts:
+  - name: dashboard
+    port: 9000
+    targetPort: 9000
+    protocol: TCP
 
 # Redirect HTTP to HTTPS
 additionalArguments:
