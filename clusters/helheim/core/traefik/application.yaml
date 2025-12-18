@@ -20,6 +20,9 @@ spec:
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
       targetRevision: HEAD
       ref: values
+    - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
+      path: clusters/helheim/core/traefik/manifests
+      targetRevision: HEAD
   syncPolicy:
     automated:
       allowEmpty: true
