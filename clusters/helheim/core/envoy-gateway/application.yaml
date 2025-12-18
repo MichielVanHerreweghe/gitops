@@ -14,6 +14,12 @@ spec:
     - chart: gateway-helm
       repoURL: oci://docker.io/envoyproxy/gateway-helm
       targetRevision: v1.6.1
+      helm:
+        valueFiles:
+          - $values/clusters/helheim/core/envoy-gateway/values.yaml
+    - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
+      path: clusters/helheim/core/envoy-gateway/manifests
+      targetRevision: HEAD
   syncPolicy:
     automated:
       allowEmpty: true
