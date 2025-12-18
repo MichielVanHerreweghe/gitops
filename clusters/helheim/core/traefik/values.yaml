@@ -14,9 +14,7 @@ gateway:
       port: 8443
       protocol: HTTPS
       namespacePolicy: null
-      # cert-manager will provision certificates via annotations
-      hostname: "*.houseofix.online"
-      # Enable the Traefik dashboard
+      hostname: "houseofix.online"
       api:
         dashboard: true
       certificateRefs:
@@ -27,6 +25,9 @@ gateway:
 providers:
   kubernetesGateway:
     enabled: true
+
+api:
+  dashboard: true
 
 ports:
   web:
@@ -44,6 +45,10 @@ ports:
       enabled: true
     tls:
       enabled: true
+  traefik:
+    port: 8080
+    expose:
+      default: true
 
 service:
   enabled: true
