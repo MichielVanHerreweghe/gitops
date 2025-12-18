@@ -45,6 +45,8 @@ ports:
 service:
   enabled: true
   type: LoadBalancer
+  labels:
+    gateway.networking.k8s.io/gateway-name: traefik
 
 # Redirect HTTP to HTTPS
 additionalArguments:
