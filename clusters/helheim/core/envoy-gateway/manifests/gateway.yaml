@@ -9,10 +9,10 @@ metadata:
 spec:
   gatewayClassName: envoy
   listeners:
-    - name: https
+    - name: whoami-https
       protocol: HTTPS
       port: 443
-      hostname: "*.houseofix.online"
+      hostname: "whoami.houseofix.online"
       allowedRoutes:
         namespaces:
           from: All
