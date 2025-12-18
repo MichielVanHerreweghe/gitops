@@ -15,7 +15,10 @@ gateway:
       protocol: HTTPS
       namespacePolicy: null
       # cert-manager will provision certificates via annotations
-      certificateRefs: []
+      certificateRefs:
+        - name: traefik-tls
+          kind: Secret
+          group: ""
 
 providers:
   kubernetesGateway:
