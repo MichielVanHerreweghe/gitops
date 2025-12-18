@@ -11,6 +11,15 @@ spec:
     server: https://kubernetes.default.svc
   project: core
   sources:
+    - chart: gateway-crds-helm
+      repoURL: oci://docker.io/envoyproxy/gateway-crds-helm
+      targetRevision: v1.6.1
+      helm:
+        valueFiles:
+          - $values/clusters/helheim/core/envoy-gateway/values.yaml
+    - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
+      targetRevision: HEAD
+      ref: values
     - chart: gateway-helm
       repoURL: oci://docker.io/envoyproxy/gateway-helm
       targetRevision: v1.6.1
