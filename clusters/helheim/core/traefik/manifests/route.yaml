@@ -14,11 +14,11 @@ spec:
   rules:
     - matches:
         - path:
-          type: PathPrefix
-          value: "/dashboard"
+            type: PathPrefix
+            value: "/dashboard"
         - path:
-          type: PathPrefix
-          value: "/api"
-          backendRefs:
-            - name: traefik
-              port: 9000
+            type: PathPrefix
+            value: "/api"
+      backendRefs:
+        - name: traefik
+          port: 9000
