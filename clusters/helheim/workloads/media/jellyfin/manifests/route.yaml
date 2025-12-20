@@ -7,8 +7,8 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: "jellyfin.houseofix.online"
 spec:
   parentRefs:
-    - name: gateway-unencrypted
-      namespace: nginx-gateway-fabric
+    - name: envoy
+      namespace: envoy-gateway
   hostnames:
     - "jellyfin.houseofix.online"
   rules:
