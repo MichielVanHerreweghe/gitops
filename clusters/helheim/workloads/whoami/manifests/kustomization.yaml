@@ -1,6 +1,0 @@
-resources:
-  - deployment.yaml
-  - service.yaml
-  - httproute.yaml
-  - infisical-secret.yaml
-  - security-policy.yaml
