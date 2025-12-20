@@ -9,10 +9,22 @@ metadata:
 spec:
   gatewayClassName: envoy
   listeners:
-    - name: whoami-https
+    - name: jellyfin-https
       protocol: HTTPS
       port: 443
-      hostname: "whoami.houseofix.online"
+      hostname: "jellyfin.houseofix.online"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: envoy-tls-cert
+            namespace: envoy-gateway
+    - name: argocd-https
+      protocol: HTTPS
+      port: 443
+      hostname: "argocd.houseofix.online"
       allowedRoutes:
         namespaces:
           from: All
