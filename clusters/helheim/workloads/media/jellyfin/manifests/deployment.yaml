@@ -16,7 +16,7 @@ spec:
         kubernetes.io/hostname: mediaserver
       containers:
         - name: jellyfin
-          image: linuxserver/jellyfin:10.10.7
+          image: linuxserver/jellyfin:10.11.11
           ports:
             - containerPort: 8096
           volumeMounts:
