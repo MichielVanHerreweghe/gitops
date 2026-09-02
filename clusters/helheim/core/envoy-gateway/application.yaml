@@ -12,7 +12,7 @@ spec:
   project: core
   sources:
     - chart: gateway-crds-helm
-      repoURL: oci://docker.io/envoyproxy/gateway-crds-helm
+      repoURL: oci://docker.io/envoyproxy
       targetRevision: v1.6.1
       helm:
         valueFiles:
@@ -21,7 +21,7 @@ spec:
       targetRevision: HEAD
       ref: values
     - chart: gateway-helm
-      repoURL: oci://docker.io/envoyproxy/gateway-helm
+      repoURL: oci://docker.io/envoyproxy
       targetRevision: v1.6.1
     - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
       path: clusters/helheim/core/envoy-gateway/manifests
