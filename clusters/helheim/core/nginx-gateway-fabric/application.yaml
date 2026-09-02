@@ -13,7 +13,7 @@ spec:
   sources:
     - chart: nginx-gateway-fabric
       repoURL: oci://ghcr.io/nginx/charts
-      targetRevision: 2.2.0
+      targetRevision: 2.7.0
       helm:
         valueFiles:
           - $values/clusters/helheim/core/nginx-gateway-fabric/values.yaml
