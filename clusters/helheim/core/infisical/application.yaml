@@ -14,7 +14,7 @@ spec:
   sources:
     - chart: secrets-operator
       repoURL: "https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts"
-      targetRevision: 0.10.9
+      targetRevision: 0.11.8
     - chart: infisical-agent-injector
       repoURL: "https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts"
       targetRevision: 0.1.12
