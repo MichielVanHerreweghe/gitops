@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
     - chart: external-dns
       repoURL: "https://kubernetes-sigs.github.io/external-dns/"
-      targetRevision: 1.19.0
+      targetRevision: 1.21.1
       helm:
         valueFiles:
           - $values/clusters/helheim/core/external-dns/values.yaml
