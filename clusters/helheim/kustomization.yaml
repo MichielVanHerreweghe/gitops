@@ -10,8 +10,8 @@ resources:
   - core/cert-manager/application.yaml
   - core/intel-device-plugins/application.yaml
   - core/external-dns/application.yaml
-  - core/nginx-gateway-fabric/application.yaml
   - core/argocd/application.yaml
   - core/envoy-gateway/application.yaml
+  - core/cloudflared/application.yaml
 
   - root-private.yaml

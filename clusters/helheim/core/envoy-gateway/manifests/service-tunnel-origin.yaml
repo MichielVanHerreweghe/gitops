@@ -1,0 +1,14 @@
+# Stable name for cloudflared to target; the generated envoy Service name contains a hash.
+apiVersion: v1
+kind: Service
+metadata:
+  name: envoy-tunnel-origin
+  namespace: envoy-gateway
+spec:
+  selector:
+    gateway.envoyproxy.io/owning-gateway-name: envoy
+    gateway.envoyproxy.io/owning-gateway-namespace: envoy-gateway
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

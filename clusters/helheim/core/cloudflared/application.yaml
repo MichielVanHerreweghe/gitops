@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflared
+  namespace: argocd
+  labels:
+    app: cloudflared
+    project: core
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cloudflared
+  project: core
+  sources:
+    - repoURL: "https://github.com/MichielVanHerreweghe/gitops.git"
+      path: clusters/helheim/core/cloudflared/manifests
+      targetRevision: HEAD
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - CreateNamespace=true

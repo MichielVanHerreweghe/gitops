@@ -33,3 +33,10 @@ spec:
         certificateRefs:
           - name: envoy-tls-cert
             namespace: envoy-gateway
+    - name: tunnel-http
+      protocol: HTTP
+      port: 8080
+      hostname: "*.houseofix.online"
+      allowedRoutes:
+        namespaces:
+          from: All
