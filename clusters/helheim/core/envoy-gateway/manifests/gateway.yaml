@@ -21,18 +21,6 @@ spec:
         certificateRefs:
           - name: envoy-tls-cert
             namespace: envoy-gateway
-    - name: argocd-https
-      protocol: HTTPS
-      port: 443
-      hostname: "argocd.houseofix.online"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: envoy-tls-cert
-            namespace: envoy-gateway
     - name: tunnel-http
       protocol: HTTP
       port: 8080
