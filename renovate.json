@@ -1,10 +1,29 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
   "argocd": {
-    "managerFilePatterns": ["/clusters/.+/application[.]yaml$/"]
+    "managerFilePatterns": [
+      "/clusters/.+/application[.]yaml$/"
+    ]
   },
   "kubernetes": {
-    "managerFilePatterns": ["/clusters/.+/manifests/.+[.]yaml$/"]
-  }
+    "managerFilePatterns": [
+      "/clusters/.+/manifests/.+[.]yaml$/"
+    ]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "OCI helm charts referenced as Argo CD OCI sources (no chart: field for renovate's argocd manager to find)",
+      "managerFilePatterns": [
+        "/clusters/.+/application[.]yaml$/"
+      ],
+      "matchStrings": [
+        "repoURL: oci://(?<depName>\\S+)\\s+path: \"\\.\"\\s+targetRevision: (?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ]
 }
