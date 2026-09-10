@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: oci://docker.io/envoyproxy/gateway-crds-helm
       path: "."
-      targetRevision: v1.6.1
+      targetRevision: 1.9.1
       helm:
         valueFiles:
           - $values/clusters/helheim/core/envoy-gateway/values.yaml
