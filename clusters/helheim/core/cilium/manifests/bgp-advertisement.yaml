@@ -28,3 +28,16 @@ spec:
               operator: In,
               values: ["envoy"],
             }
+    # opt-in for plain Services that have to be reachable on the lan. the two
+    # selectors above match labels the gateway controllers set themselves; a
+    # hand-written Service carries none of them, and an unadvertised /32 is not
+    # merely slow -- navigator has no route and no arp answer for it, so the
+    # client gets an icmp net-unreachable. l2 announcements would be the other
+    # way in, but that policy is commented out of the kustomization.
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - LoadBalancerIP
+      selector:
+        matchLabels:
+          bgp.houseofix.online/advertise: "true"
