@@ -5,14 +5,14 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: cloudflare
     cert-manager.io/issue-temporary-certificate: "true"
-    external-dns.alpha.kubernetes.io/target: "ip.houseofix.online"
+    external-dns.alpha.kubernetes.io/target: "ip.finalempire.nl"
 spec:
   gatewayClassName: envoy
   listeners:
     - name: jellyfin-https
       protocol: HTTPS
       port: 443
-      hostname: "jellyfin.houseofix.online"
+      hostname: "jellyfin.finalempire.nl"
       allowedRoutes:
         namespaces:
           from: All
@@ -24,7 +24,7 @@ spec:
     - name: tunnel-http
       protocol: HTTP
       port: 8080
-      hostname: "*.houseofix.online"
+      hostname: "*.finalempire.nl"
       allowedRoutes:
         namespaces:
           from: All
